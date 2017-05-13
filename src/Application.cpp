@@ -8,6 +8,7 @@ InversePalindrome.com
 #include "Application.hpp"
 #include "MenuState.hpp"
 #include "PlayState.hpp"
+#include "PauseState.hpp"
 #include "SplashState.hpp"
 #include "HighScoreState.hpp"
 #include "SpaceshipSelectionState.hpp"
@@ -17,13 +18,14 @@ InversePalindrome.com
 
 Application::Application() :
 	window(sf::VideoMode(2560, 1440), "Spacelapse", sf::Style::Titlebar | sf::Style::Close),
-	stateMachine(State::Data(window, gui, hud, textures, images))
+	stateMachine(State::Data(window, gui, hud, textures, images, player))
 {
 	stateMachine.registerState<SplashState>(StateMachine::StateID::SplashState);
 	stateMachine.registerState<MenuState>(StateMachine::StateID::MenuState);
 	stateMachine.registerState<PlayState>(StateMachine::StateID::PlayState);
 	stateMachine.registerState<SpaceshipSelectionState>(StateMachine::StateID::SpaceshipSelectionState);
 	stateMachine.registerState<HighScoreState>(StateMachine::StateID::HighScoreState);
+	stateMachine.registerState<PauseState>(StateMachine::StateID::PauseState);
 
 	stateMachine.push(StateMachine::StateID::SplashState);
 }

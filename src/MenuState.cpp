@@ -29,24 +29,20 @@ MenuState::MenuState(StateMachine& stateMachine, Data data) :
 	background.setScale(static_cast<float>(data.window.getSize().x) / background.getLocalBounds().width, 
 		static_cast<float>(data.window.getSize().y) / background.getLocalBounds().height);
 
-	auto playImage = sfg::Image::Create(data.images.get(Images::PlayButton));
-	auto spaceshipsImage = sfg::Image::Create(data.images.get(Images::SpaceshipsButton));
-	auto highScoresImage = sfg::Image::Create(data.images.get(Images::HighScoresButton));
-
 	playButton = sfg::Button::Create();
-	playButton->SetImage(playImage);
+	playButton->SetImage(sfg::Image::Create(data.images.get(Images::PlayButton)));
 	playButton->SetPosition(sf::Vector2f(1030.f, 800.f));
 	playButton->GetSignal(sfg::Widget::OnLeftClick).Connect([this] { transitionToPlay(); });
 
 	spaceshipsButton = sfg::Button::Create();
-	spaceshipsButton->SetImage(spaceshipsImage);
+	spaceshipsButton->SetImage(sfg::Image::Create(data.images.get(Images::SpaceshipsButton)));
 	spaceshipsButton->SetPosition(sf::Vector2f(1030.f, 1000.f));
     spaceshipsButton->GetSignal(sfg::Widget::OnLeftClick).Connect([this] { transitionToSpaceshipSelection(); });
 
     highScoresButton = sfg::Button::Create();
-	highScoresButton->SetImage(highScoresImage);
+	highScoresButton->SetImage(sfg::Image::Create(data.images.get(Images::HighScoresButton)));
 	highScoresButton->SetPosition(sf::Vector2f(1030.f, 1200.f));
-	highScoresButton->GetSignal(sfg::Widget::OnLeftClick).Connect([this] { transitionToOptions(); });
+	highScoresButton->GetSignal(sfg::Widget::OnLeftClick).Connect([this] { transitionToHighScores(); });
 
 	data.hud.Add(playButton);
 	data.hud.Add(spaceshipsButton);
@@ -79,7 +75,8 @@ void MenuState::transitionToPlay()
 	this->spaceshipsButton->Show(false);
 	this->highScoresButton->Show(false);
 
-	stateMachine.push(StateMachine::StateID::PlayState);
+	this->stateMachine.pop();
+	this->stateMachine.push(StateMachine::StateID::PlayState);
 }
 
 void MenuState::transitionToSpaceshipSelection()
@@ -88,14 +85,14 @@ void MenuState::transitionToSpaceshipSelection()
 	this->spaceshipsButton->Show(false);
 	this->highScoresButton->Show(false);
 
-	stateMachine.push(StateMachine::StateID::SpaceshipSelectionState);
+	this->stateMachine.push(StateMachine::StateID::SpaceshipSelectionState);
 }
 
-void MenuState::transitionToOptions()
+void MenuState::transitionToHighScores()
 {
 	this->playButton->Show(false);
 	this->spaceshipsButton->Show(false);
     this->highScoresButton->Show(false);
 
-	stateMachine.push(StateMachine::StateID::HighScoreState);
+	this->stateMachine.push(StateMachine::StateID::HighScoreState);
 }

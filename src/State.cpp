@@ -9,12 +9,13 @@ InversePalindrome.com
 #include "StateMachine.hpp"
 
 
-State::Data::Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images) :
+State::Data::Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images, Player& player) :
 	window(window),
 	gui(gui),
 	hud(hud),
 	textures(textures),
-	images(images)
+	images(images),
+	player(player)
 {
 }
 
