@@ -8,6 +8,8 @@ InversePalindrome.com
 #pragma once
 
 #include "State.hpp"
+#include "World.hpp"
+#include "Player.hpp"
 
 
 class PlayState : public State
@@ -20,4 +22,6 @@ public:
 	virtual void draw() override;
 
 private:
+	World world;
+	Player& player;
 };

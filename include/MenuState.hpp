@@ -30,5 +30,5 @@ private:
 
 	void transitionToPlay();
 	void transitionToSpaceshipSelection();
-	void transitionToOptions();
+	void transitionToHighScores();
 };

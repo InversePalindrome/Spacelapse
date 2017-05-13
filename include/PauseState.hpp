@@ -1,6 +1,6 @@
 /*
 Copyright (c) 2017 InversePalindrome
-Spacelapse - SpaceshipSelectionState.hpp
+Spacelapse - PauseState.hpp
 InversePalindrome.com
 */
 
@@ -10,13 +10,12 @@ InversePalindrome.com
 #include "State.hpp"
 
 #include <SFGUI/Button.hpp>
-#include <SFML/Graphics/Sprite.hpp>
 
 
-class SpaceshipSelectionState : public State
+class PauseState : public State
 {
 public:
-	SpaceshipSelectionState(StateMachine& stateMachine, Data data);
+	PauseState(StateMachine& stateMachine, Data data);
 
 	virtual void handleEvent(const sf::Event& event) override;
 	virtual void update(sf::Time deltaTime) override;
@@ -24,5 +23,9 @@ public:
 
 private:
 	sf::Sprite background;
-	sfg::Button::Ptr menuButton;
+	sfg::Button::Ptr quitButton;
+	sfg::Button::Ptr playButton;
+
+	void transitionToMenu();
+	void transitionToPlay();
 };

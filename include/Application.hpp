@@ -7,6 +7,7 @@ InversePalindrome.com
 
 #pragma once
 
+#include "Player.hpp"
 #include "StateMachine.hpp"
 #include "ResourceManager.hpp"
 #include "ResourceIdentifiers.hpp"
@@ -36,4 +37,5 @@ private:
 	StateMachine stateMachine;
 	TextureManager textures;
 	ImageManager images;
+	Player player;
 };

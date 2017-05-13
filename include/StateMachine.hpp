@@ -20,7 +20,7 @@ InversePalindrome.com
 class StateMachine
 {
 public:
-	enum class StateID { UndefinedState, SplashState, MenuState, PlayState, SpaceshipSelectionState, HighScoreState };
+	enum class StateID { UndefinedState, SplashState, MenuState, PlayState, SpaceshipSelectionState, HighScoreState, PauseState, SettingsState };
 	enum class Action { UndefinedAction, Push, Pop, Clear };
 
 	StateMachine(State::Data data);

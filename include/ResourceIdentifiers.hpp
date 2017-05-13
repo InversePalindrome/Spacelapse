@@ -13,8 +13,14 @@ InversePalindrome.com
 #include <SFML/Audio/SoundBuffer.hpp>
 
 
-enum class Textures { SplashScreen, MenuBackground, SpaceshipsBackground, HighScoreBackground };
-enum class Images { PlayButton, SpaceshipsButton, HighScoresButton, MenuButton };
+enum class Textures
+{
+	SplashScreen, MenuBackground, SpaceshipsBackground, HighScoreBackground, PlayBackground, PauseBackground, BlueSpaceship, RegularAsteroid, LavaAsteroid
+};
+enum class Images
+{ 
+	PlayButton, SpaceshipsButton, HighScoresButton, MenuButton, QuitButton, SettingsButton 
+};
 enum class Fonts {};
 enum class Sounds {};
 

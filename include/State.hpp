@@ -7,6 +7,7 @@ InversePalindrome.com
 
 #pragma once
 
+#include "Player.hpp"
 #include "ResourceIdentifiers.hpp"
 
 #include <SFGUI/SFGUI.hpp>
@@ -24,13 +25,14 @@ class State
 public:
 	struct Data
 	{
-		Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images);
+		Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images, Player& player);
 
 		sf::RenderWindow& window;
 		sfg::SFGUI& gui;
 		sfg::Desktop& hud;
 		TextureManager& textures;
 		ImageManager& images;
+		Player& player;
 	};
 
 	State(StateMachine& stateMachine, Data data);
