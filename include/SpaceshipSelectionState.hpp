@@ -8,9 +8,12 @@ InversePalindrome.com
 #pragma once
 
 #include "State.hpp"
+#include "Spaceship.hpp"
 
 #include <SFGUI/Button.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+
+#include <map>
 
 
 class SpaceshipSelectionState : public State
@@ -23,6 +26,17 @@ public:
 	virtual void draw() override;
 
 private:
+	struct Selection
+	{
+		Selection(Data data, Textures spaceshipTexture, sf::Vector2f position);
+
+		sf::Sprite spaceshipSprite;
+		sfg::Button::Ptr spaceshipButton;
+	};
+
 	sf::Sprite background;
 	sfg::Button::Ptr menuButton;
+	std::map<Spaceship::Type, Selection> spaceshipSelections;
+
+	void selectSpaceship(Spaceship::Type spaceshipType);
 };

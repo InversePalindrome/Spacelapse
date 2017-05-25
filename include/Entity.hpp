@@ -17,6 +17,8 @@ InversePalindrome.com
 class Entity : public SceneNode
 {
 public:
+	Entity();
+
 	void setVelocity(sf::Vector2f velocity);
 	void setVelocity(float xVelocity, float yVelocity);
 
@@ -25,9 +27,14 @@ public:
 
 	sf::Vector2f getVelocity() const;
 
+	void setRemovalStatus(bool status);
+
+    bool getRemovalStatus() const;
+
 protected:
 	virtual void updateCurrentNode(sf::Time deltaTime, CommandQueue& commands) override;
 
 private:
 	sf::Vector2f velocity;
+	bool removalStatus;
 };

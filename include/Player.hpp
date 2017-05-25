@@ -18,7 +18,7 @@ InversePalindrome.com
 class Player
 {
 public:
-	enum class Action { MoveUp, MoveDown, MoveRight, MoveLeft, ActionCount };
+	enum class Action { MoveUp, MoveDown, MoveRight, MoveLeft, Fire, ActionCount };
 
 	Player();
 

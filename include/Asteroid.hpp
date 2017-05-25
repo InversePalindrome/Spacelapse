@@ -21,7 +21,11 @@ public:
 
 	Asteroid(Type type, TextureManager& textures);
 
+	virtual bool isMarkedForRemoval() const override;
+
 	virtual std::size_t getCategory() const override;
+
+	virtual sf::FloatRect getPerimeter() const override;
 
 private:
 	Type type;

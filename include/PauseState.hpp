@@ -8,7 +8,9 @@ InversePalindrome.com
 #pragma once
 
 #include "State.hpp"
+#include "World.hpp"
 
+#include <SFGUI/Label.hpp>
 #include <SFGUI/Button.hpp>
 
 
@@ -23,6 +25,7 @@ public:
 
 private:
 	sf::Sprite background;
+	sfg::Label::Ptr scoreLabel;
 	sfg::Button::Ptr quitButton;
 	sfg::Button::Ptr playButton;
 

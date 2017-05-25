@@ -9,7 +9,6 @@ InversePalindrome.com
 
 #include "State.hpp"
 
-#include <SFML/System/Clock.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
 
@@ -24,5 +23,5 @@ public:
 
 private:
 	sf::Sprite background;
-	sf::Clock timer;
+	sf::Time introTime;
 };

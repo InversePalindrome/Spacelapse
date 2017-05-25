@@ -1,6 +1,6 @@
 /*
 Copyright (c) 2017 InversePalindrome
-Spacelapse - Spaceship.hpp
+Spacelapse - PointTarget.hpp
 InversePalindrome.com
 */
 
@@ -8,24 +8,22 @@ InversePalindrome.com
 #pragma once
 
 #include "Entity.hpp"
-#include "Command.hpp"
-#include "Projectile.hpp"
 #include "ResourceManager.hpp"
 #include "ResourceIdentifiers.hpp"
 
 #include <SFML/Graphics/Sprite.hpp>
 
 
-class Spaceship : public Entity
+class PointTarget : public Entity
 {
 public:
-	enum class Type { UndefinedSpaceship, BlueSpaceship, RedSpaceship, GreenSpaceship, YellowSpaceship };
+	enum class Type { UndefinedType, BlueTarget, GreenTarget };
 
-	Spaceship(Type type, TextureManager& textures);
+	PointTarget(Type type, TextureManager& textures);
 
-	void shoot();
+	std::size_t getPoints() const;
 
-	void playLocalSound(CommandQueue& commands, Sounds sound);
+	virtual bool isMarkedForRemoval() const override;
 
 	virtual std::size_t getCategory() const override;
 
@@ -34,15 +32,11 @@ public:
 private:
 	Type type;
 	sf::Sprite sprite;
-	Command shootCommand;
-	sf::Time shootingTime;
-	sf::Time activeTime;
-	bool isShooting;
+	std::size_t points;
 
 	virtual void updateCurrentNode(sf::Time deltaTime, CommandQueue& commands) override;
 	virtual void drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	void createProjectile(SceneNode& node, Projectile::Type type, TextureManager& textures) const;
-
 	Textures getTexture() const;
+	std::size_t getTypePoints() const;
 };

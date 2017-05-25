@@ -9,8 +9,11 @@ InversePalindrome.com
 
 #include "State.hpp"
 
+#include <SFGUI/Label.hpp>
 #include <SFGUI/Button.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+
+#include <array>
 
 
 class HighScoreState : public State
@@ -24,5 +27,6 @@ public:
 
 private:
 	sf::Sprite background;
+	std::array<sfg::Label::Ptr, 9> scoreLabels;
 	sfg::Button::Ptr menuButton;
 };

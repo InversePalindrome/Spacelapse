@@ -1,6 +1,6 @@
 /*
 Copyright (c) 2017 InversePalindrome
-Spacelapse - PlayState.hpp
+Spacelapse - GameOverState.hpp
 InversePalindrome.com
 */
 
@@ -8,24 +8,27 @@ InversePalindrome.com
 #pragma once
 
 #include "State.hpp"
-#include "World.hpp"
-#include "Player.hpp"
 
 #include <SFGUI/Label.hpp>
+#include <SFGUI/Button.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 
-class PlayState : public State
+class GameOverState : public State
 {
 public:
-	PlayState(StateMachine& stateMachine, Data data);
+	GameOverState(StateMachine& stateMachine, Data data);
 
 	virtual void handleEvent(const sf::Event& event) override;
 	virtual void update(sf::Time deltaTime) override;
 	virtual void draw() override;
 
 private:
-	Player& player;
-	World world;
-
+	sf::Sprite background;
 	sfg::Label::Ptr scoreLabel;
+	sfg::Button::Ptr playButton;
+	sfg::Button::Ptr quitButton;
+
+	void transitionToMenu();
+	void transitionToPlay();
 };

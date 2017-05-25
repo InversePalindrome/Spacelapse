@@ -15,6 +15,7 @@ InversePalindrome.com
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 
+#include <set>
 #include <vector>
 #include <memory>
 
@@ -33,7 +34,16 @@ public:
 
 	void executeCommand(const Command& command, sf::Time deltaTime);
 
+	void checkSceneCollision(SceneNode& sceneGraph, std::set<std::pair<SceneNode*, SceneNode*>>& collisions);
+	void checkNodeCollision(SceneNode& node, std::set<std::pair<SceneNode*, SceneNode*>>& collisions);
+
+	void removeMarkedNodes();
+
+	virtual bool isMarkedForRemoval() const;
+	
 	virtual std::size_t getCategory() const;
+
+	virtual sf::FloatRect getPerimeter() const;
 
 private:
 	std::vector<std::unique_ptr<SceneNode>> children;
@@ -46,3 +56,5 @@ private:
 	virtual void drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const;
 	void drawChildrenNodes(sf::RenderTarget& target, sf::RenderStates states) const;
 };
+
+bool collision(const SceneNode& node1, const SceneNode& node2);

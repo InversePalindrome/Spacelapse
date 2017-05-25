@@ -15,14 +15,25 @@ InversePalindrome.com
 
 enum class Textures
 {
-	SplashScreen, MenuBackground, SpaceshipsBackground, HighScoreBackground, PlayBackground, PauseBackground, BlueSpaceship, RegularAsteroid, LavaAsteroid
+	SplashScreen, MenuBackground, SpaceshipsBackground, HighScoreBackground, PlayBackground, 
+	PauseBackground, GameOverBackground, BlueSpaceship, RedSpaceship, GreenSpaceship, YellowSpaceship,
+	RegularAsteroid, LavaAsteroid, FireProjectile, BluePointTarget, GreenPointTarget
 };
+
 enum class Images
 { 
-	PlayButton, SpaceshipsButton, HighScoresButton, MenuButton, QuitButton, SettingsButton 
+	PlayButton, SpaceshipsButton, HighScoresButton, MenuButton, QuitButton, SettingsButton, SelectButton
 };
-enum class Fonts {};
-enum class Sounds {};
+
+enum class Fonts 
+{
+	Bebas
+};
+
+enum class Sounds 
+{
+	LaserShot
+};
 
 template<typename Resource, typename Identifier>
 class ResourceManager;

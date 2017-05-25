@@ -16,13 +16,19 @@ class SceneNode;
 
 struct Command
 {
-	enum class Category { UndefinedCategory = 0, Scene = 1 << 0, Player = 1 << 1, Asteroid = 1 << 2 };
+	enum Category 
+	{
+		UndefinedCategory = 0, Scene = 1 << 0, Sound = 1 << 1, Player = 1 << 2, Asteroid = 1 << 3, Projectile = 1 << 4, 
+		BluePointTarget = 1 << 5, GreenPointTarget = 1 << 6,
+
+		PointTarget = BluePointTarget | GreenPointTarget
+	};
 
 	Command();
 
 	std::function<void(SceneNode&, sf::Time)> action;
 
-	Category category;
+	std::size_t category;
 };
 
 
