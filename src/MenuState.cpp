@@ -19,11 +19,6 @@ MenuState::MenuState(StateMachine& stateMachine, Data data) :
 	spaceshipsButton(),
 	highScoresButton()
 {
-	data.textures.load(Textures::MenuBackground, "Resources/Images/MenuBackground.jpg");
-	data.images.load(Images::PlayButton, "Resources/Images/PlayButton.png");
-	data.images.load(Images::SpaceshipsButton, "Resources/Images/SpaceshipsButton.png");
-	data.images.load(Images::HighScoresButton, "Resources/Images/HighScoresButton.png");
-
 	background.setTexture(data.textures.get(Textures::MenuBackground));
 
 	background.setScale(static_cast<float>(data.window.getSize().x) / background.getLocalBounds().width, 

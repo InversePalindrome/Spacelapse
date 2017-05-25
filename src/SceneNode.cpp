@@ -47,7 +47,7 @@ sf::Transform SceneNode::getAbsoluteTransform() const
 
 	for (const SceneNode* node = this; node != nullptr; node = node->parent)
 	{
-		transform *= node->getTransform();
+		transform = node->getTransform() * transform;
 	}
 
 	return transform;
@@ -55,7 +55,7 @@ sf::Transform SceneNode::getAbsoluteTransform() const
 
 void SceneNode::executeCommand(const Command& command, sf::Time deltaTime)
 {
-	if (static_cast<std::size_t>(command.category) & this->getCategory())
+	if (command.category & this->getCategory())
 	{
 		command.action(*this, deltaTime);
 	}
@@ -66,9 +66,50 @@ void SceneNode::executeCommand(const Command& command, sf::Time deltaTime)
 	}
 }
 
+void SceneNode::checkSceneCollision(SceneNode& sceneGraph, std::set<std::pair<SceneNode*, SceneNode*>>& collisions)
+{
+	this->checkNodeCollision(sceneGraph, collisions);
+
+	for (auto& child : sceneGraph.children)
+	{
+		this->checkSceneCollision(*child, collisions);
+	}
+}
+
+void SceneNode::checkNodeCollision(SceneNode& node, std::set<std::pair<SceneNode*, SceneNode*>>& collisions)
+{
+	if (this != &node && collision(*this, node))
+	{
+		collisions.insert(std::minmax(this, &node));
+	}
+
+	for (auto& child : this->children)
+	{
+		child->checkNodeCollision(node, collisions);
+	}
+}
+
+void SceneNode::removeMarkedNodes()
+{
+	auto firstMarkedNode = std::remove_if(this->children.begin(), this->children.end(), std::mem_fn(&SceneNode::isMarkedForRemoval));
+	this->children.erase(firstMarkedNode, this->children.end());
+
+	std::for_each(this->children.begin(), this->children.end(), std::mem_fn(&SceneNode::removeMarkedNodes));
+}
+
+bool SceneNode::isMarkedForRemoval() const
+{
+	return false;
+}
+
 std::size_t SceneNode::getCategory() const
 {
-	return static_cast<std::size_t>(Command::Category::Scene);
+	return Command::Category::Scene;
+}
+
+sf::FloatRect SceneNode::getPerimeter() const
+{
+	return sf::FloatRect();
 }
 
 void SceneNode::updateCurrentNode(sf::Time deltaTime, CommandQueue& commands)
@@ -103,4 +144,14 @@ void SceneNode::drawChildrenNodes(sf::RenderTarget& target, sf::RenderStates sta
 	{
 		child->draw(target, states);
 	}
+}
+
+bool collision(const SceneNode& node1, const SceneNode& node2)
+{
+	const float radius1 = (node1.getPerimeter().width + node1.getPerimeter().height) / 4.f;
+	const float radius2 = (node2.getPerimeter().width + node2.getPerimeter().height) / 4.f;
+	const float differenceInX = node1.getPosition().x - node2.getPosition().x;
+	const float differenceInY = node1.getPosition().y - node2.getPosition().y;
+
+	return std::sqrt(std::pow(differenceInX, 2) + std::pow(differenceInY, 2)) <= radius1 + radius2;
 }

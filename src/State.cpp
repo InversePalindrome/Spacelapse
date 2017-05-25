@@ -9,13 +9,17 @@ InversePalindrome.com
 #include "StateMachine.hpp"
 
 
-State::Data::Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images, Player& player) :
+State::Data::Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images,
+	SoundPlayer& soundPlayer, Player& player, Spaceship::Type& spaceshipType, std::array<std::size_t, 9>& scores) :
 	window(window),
 	gui(gui),
 	hud(hud),
 	textures(textures),
 	images(images),
-	player(player)
+	soundPlayer(soundPlayer),
+	player(player),
+	spaceshipType(spaceshipType),
+	scores(scores)
 {
 }
 

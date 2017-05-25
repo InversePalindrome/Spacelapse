@@ -16,6 +16,7 @@ Player::Player() :
 	keyActions[sf::Keyboard::S] = Player::Action::MoveDown;
 	keyActions[sf::Keyboard::D] = Player::Action::MoveRight;
 	keyActions[sf::Keyboard::A] = Player::Action::MoveLeft;
+	keyActions[sf::Keyboard::Space] = Player::Action::Fire;
 
 	const float playerSpeed = 600.f;
 
@@ -23,6 +24,7 @@ Player::Player() :
 	actionCommands[Player::Action::MoveDown].action = derivedAction<Spaceship>(SpaceshipMovement(0.f, playerSpeed));
 	actionCommands[Player::Action::MoveRight].action = derivedAction<Spaceship>(SpaceshipMovement(playerSpeed, 0.f));
 	actionCommands[Player::Action::MoveLeft].action = derivedAction<Spaceship>(SpaceshipMovement(2 * -playerSpeed, 0.f));
+	actionCommands[Player::Action::Fire].action = derivedAction<Spaceship>([&](Spaceship& spaceship, sf::Time) { return spaceship.shoot(); });
 
 	for (auto& actionCommand : actionCommands)
 	{
@@ -96,6 +98,7 @@ bool Player::isInput(Action action)
 	case Player::Action::MoveDown:
 	case Player::Action::MoveRight:
 	case Player::Action::MoveLeft:
+	case Player::Action::Fire:
 		return true;
 	default:
 		return false;

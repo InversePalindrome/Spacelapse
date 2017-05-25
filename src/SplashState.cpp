@@ -13,9 +13,8 @@ InversePalindrome.com
 SplashState::SplashState(StateMachine& stateMachine, Data data) :
 	State(stateMachine, data),
 	background(),
-	timer()
+	introTime(sf::seconds(2.5f))
 {
-	data.textures.load(Textures::SplashScreen, "Resources/Images/InversePalindromeLogo.png");
 	background.setTexture(data.textures.get(Textures::SplashScreen));
 
 	background.setOrigin(background.getLocalBounds().width / 2.f, background.getLocalBounds().height / 2.f);
@@ -29,7 +28,9 @@ void SplashState::handleEvent(const sf::Event& event)
 
 void SplashState::update(sf::Time deltaTime)
 {
-	if (timer.getElapsedTime().asSeconds() >= 2.5f)
+	this->introTime -= deltaTime;
+
+	if (introTime.asSeconds() <= 0.f)
 	{
 		this->stateMachine.pop();
 		this->stateMachine.push(StateMachine::StateID::MenuState);

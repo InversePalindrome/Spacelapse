@@ -16,9 +16,19 @@ Asteroid::Asteroid(Type type, TextureManager& textures) :
 	sprite.setScale(0.6f, 0.6f);
 }
 
+bool Asteroid::isMarkedForRemoval() const
+{
+	return this->getRemovalStatus();
+}
+
 std::size_t Asteroid::getCategory() const
 {
-	return static_cast<std::size_t>(Command::Category::Asteroid);
+	return Command::Category::Asteroid;
+}
+
+sf::FloatRect Asteroid::getPerimeter() const
+{
+	return this->getAbsoluteTransform().transformRect(this->sprite.getGlobalBounds());
 }
 
 void Asteroid::updateCurrentNode(sf::Time deltaTime, CommandQueue& commands)
