@@ -17,12 +17,13 @@ enum class Textures
 {
 	SplashScreen, MenuBackground, SpaceshipsBackground, HighScoreBackground, PlayBackground, 
 	PauseBackground, GameOverBackground, BlueSpaceship, RedSpaceship, GreenSpaceship, YellowSpaceship,
-	RegularAsteroid, LavaAsteroid, FireProjectile, BluePointTarget, GreenPointTarget
+	RegularAsteroid, LavaAsteroid, FireProjectile, BluePointTarget, GreenPointTarget, YellowPointTarget
 };
 
 enum class Images
 { 
-	PlayButton, SpaceshipsButton, HighScoresButton, MenuButton, QuitButton, SettingsButton, SelectButton
+	PlayButton, SpaceshipsButton, HighScoresButton, MenuButton, QuitButton, SettingsButton, SelectButton, 
+	OnVolumeButton, OffVolumeButton
 };
 
 enum class Fonts 

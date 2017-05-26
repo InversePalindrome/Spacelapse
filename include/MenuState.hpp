@@ -27,8 +27,11 @@ private:
 	sfg::Button::Ptr playButton;
 	sfg::Button::Ptr spaceshipsButton;
 	sfg::Button::Ptr highScoresButton;
+	sfg::Button::Ptr volumeButton;
 
 	void transitionToPlay();
 	void transitionToSpaceshipSelection();
 	void transitionToHighScores();
+
+	void adjustVolume();
 };

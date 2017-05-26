@@ -26,13 +26,19 @@ public:
 
 	void removeStoppedSounds();
 
+	void setVolume(float volume);
+
 	void setListenerPosition(sf::Vector2f position);
+
+	float getVolume() const;
 
 	sf::Vector2f getListenerPosition() const;
 
 private:
 	SoundManager soundBuffers;
 	std::list<sf::Sound> sounds;
+
+	float volume;
 
 	static const float zPosition;
 	static const float attenuation;

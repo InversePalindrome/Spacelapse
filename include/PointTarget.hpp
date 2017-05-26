@@ -17,11 +17,11 @@ InversePalindrome.com
 class PointTarget : public Entity
 {
 public:
-	enum class Type { UndefinedType, BlueTarget, GreenTarget };
+	enum class Type { UndefinedType, BlueTarget, GreenTarget, YellowTarget };
 
 	PointTarget(Type type, TextureManager& textures);
 
-	std::size_t getPoints() const;
+	static std::size_t getPoints(Type targetType);
 
 	virtual bool isMarkedForRemoval() const override;
 
@@ -32,11 +32,9 @@ public:
 private:
 	Type type;
 	sf::Sprite sprite;
-	std::size_t points;
 
 	virtual void updateCurrentNode(sf::Time deltaTime, CommandQueue& commands) override;
 	virtual void drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 	Textures getTexture() const;
-	std::size_t getTypePoints() const;
 };

@@ -19,9 +19,9 @@ struct Command
 	enum Category 
 	{
 		UndefinedCategory = 0, Scene = 1 << 0, Sound = 1 << 1, Player = 1 << 2, Asteroid = 1 << 3, Projectile = 1 << 4, 
-		BluePointTarget = 1 << 5, GreenPointTarget = 1 << 6,
+		BluePointTarget = 1 << 5, GreenPointTarget = 1 << 6, YellowPointTarget = 1 << 7,
 
-		PointTarget = BluePointTarget | GreenPointTarget
+		PointTarget = BluePointTarget | GreenPointTarget | YellowPointTarget
 	};
 
 	Command();
