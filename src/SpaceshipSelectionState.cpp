@@ -65,8 +65,13 @@ SpaceshipSelectionState::SpaceshipSelectionState(StateMachine& stateMachine, Dat
 
 	data.hud.Add(menuButton);
 
-	for (const auto& selection : spaceshipSelections)
+	for (auto& selection : spaceshipSelections)
 	{
+		if (selection.first == data.spaceshipType)
+		{
+			selection.second.spaceshipSprite.setRotation(270.f);
+		}
+
 		data.hud.Add(selection.second.spaceshipButton);
 	}
 }

@@ -180,7 +180,7 @@ void World::handleCollisions()
 			auto& pointTarget = static_cast<PointTarget&>(*collision.first);
 			auto& projectile = static_cast<Projectile&>(*collision.second);
 
-			this->score += 5;
+			this->score += PointTarget::getPoints(PointTarget::Type::BlueTarget);
 
 			pointTarget.setRemovalStatus(true);
 			projectile.setRemovalStatus(true);
@@ -191,11 +191,22 @@ void World::handleCollisions()
 			auto& pointTarget = static_cast<PointTarget&>(*collision.first);
 			auto& projectile = static_cast<Projectile&>(*collision.second);
 
-			this->score += 10;
+			this->score += PointTarget::getPoints(PointTarget::Type::GreenTarget);
 
 			pointTarget.setRemovalStatus(true);
 			projectile.setRemovalStatus(true);
         }
+
+		else if (this->categoriesMatch(collision, Command::Category::YellowPointTarget, Command::Category::Projectile))
+		{
+			auto& pointTarget = static_cast<PointTarget&>(*collision.first);
+			auto& projectile = static_cast<Projectile&>(*collision.second);
+
+			this->score += PointTarget::getPoints(PointTarget::Type::YellowTarget);
+
+			pointTarget.setRemovalStatus(true);
+			projectile.setRemovalStatus(true);
+		}
 	}
 }
 
@@ -213,8 +224,9 @@ void World::spawnEntities()
 	const std::size_t numOfAsteroids = distNumAsteroids(mt);
 	const std::size_t numOfTargets = distNumTargets(mt);
 
-	const float regularAsteroidRate = 0.7f;
-	const float blueTargetRate = 0.8f;
+	const float regularAsteroidRate = 0.8f;
+	const float blueTargetRate = 0.7f;
+	const float greenTargetRate = 0.2f;
 
 	this->calculateEntityPositions(numOfAsteroids + numOfTargets);
 
@@ -240,7 +252,20 @@ void World::spawnEntities()
 	{
 		PointTarget::Type type = PointTarget::Type::UndefinedType;
 
-		distEntityType(mt) < blueTargetRate ? type = PointTarget::Type::BlueTarget : type = PointTarget::Type::GreenTarget;
+		const float pointTargetDistribution = distEntityType(mt);
+
+		if (pointTargetDistribution < blueTargetRate)
+		{
+			type = PointTarget::Type::BlueTarget;
+		}
+		else if (pointTargetDistribution < blueTargetRate + greenTargetRate)
+		{
+			type = PointTarget::Type::GreenTarget;
+		}
+		else
+		{
+			type = PointTarget::Type::YellowTarget;
+		}
 
 		auto pointTarget = std::make_unique<PointTarget>(type, this->textures);
 

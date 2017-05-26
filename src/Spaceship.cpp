@@ -20,6 +20,7 @@ Spaceship::Spaceship(Type type, TextureManager& textures) :
 	sprite.setScale(0.6f, 0.6f);
 
 	shootCommand.category = static_cast<std::size_t>(Command::Category::Scene);
+
 	shootCommand.action = [this, &textures](SceneNode& node, sf::Time)
 	{
 		createProjectile(node, Projectile::Type::FireProjectile, textures);

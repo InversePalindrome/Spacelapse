@@ -1,6 +1,6 @@
 /*
 Copyright (c) 2017 InversePalindrome
-Spacelapse - Player.hpp
+Spacelapse - SoundNode.cpp
 InversePalindrome.com
 */
 

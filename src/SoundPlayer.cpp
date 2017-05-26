@@ -19,7 +19,8 @@ const float SoundPlayer::minDistance3d = std::sqrt(std::pow(minDistance2d, 2) + 
 
 SoundPlayer::SoundPlayer() :
 	soundBuffers(),
-	sounds()
+	sounds(),
+	volume(100.f)
 {
 	soundBuffers.load(Sounds::LaserShot, "Resources/Sounds/LaserShot.wav");
 }
@@ -33,6 +34,7 @@ void SoundPlayer::play(Sounds sound, sf::Vector2f position)
 {
 	this->sounds.push_back(sf::Sound(this->soundBuffers.get(sound)));
 	
+	this->sounds.back().setVolume(this->volume);
 	this->sounds.back().setPosition(position.x, -position.y, 0.f);
 	this->sounds.back().setAttenuation(this->attenuation);
 	this->sounds.back().setMinDistance(this->minDistance3d);
@@ -45,9 +47,19 @@ void SoundPlayer::removeStoppedSounds()
 	this->sounds.remove_if([](const auto& sound) { return sound.getStatus() == sf::Sound::Stopped; });
 }
 
+void SoundPlayer::setVolume(float volume)
+{
+	this->volume = volume;
+}
+
 void SoundPlayer::setListenerPosition(sf::Vector2f position)
 {
 	sf::Listener::setPosition(position.x, -position.y, this->zPosition);
+}
+
+float SoundPlayer::getVolume() const
+{
+	return this->volume;
 }
 
 sf::Vector2f SoundPlayer::getListenerPosition() const

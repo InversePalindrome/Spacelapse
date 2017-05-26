@@ -153,6 +153,7 @@ void Application::loadTextures()
 	this->textures.load(Textures::LavaAsteroid, "Resources/Images/LavaAsteroid.png");
 	this->textures.load(Textures::BluePointTarget, "Resources/Images/BluePointTarget.png");
 	this->textures.load(Textures::GreenPointTarget, "Resources/Images/GreenPointTarget.png");
+	this->textures.load(Textures::YellowPointTarget, "Resources/Images/YellowPointTarget.png");
 	this->textures.load(Textures::PlayBackground, "Resources/Images/SpaceBackground.jpg");
 	this->textures.load(Textures::PauseBackground, "Resources/Images/SpaceBackground2.jpg");
 	this->textures.load(Textures::GameOverBackground, "Resources/Images/SpaceBackground3.jpg");
@@ -163,4 +164,6 @@ void Application::loadTextures()
 	this->images.load(Images::HighScoresButton, "Resources/Images/HighScoresButton.png");
 	this->images.load(Images::MenuButton, "Resources/Images/MenuButton.png");
 	this->images.load(Images::SelectButton, "Resources/Images/SelectButton.png");
+	this->images.load(Images::OnVolumeButton, "Resources/Images/OnVolumeButton.png");
+	this->images.load(Images::OffVolumeButton, "Resources/Images/OffVolumeButton.png");
 }

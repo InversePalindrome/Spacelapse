@@ -17,7 +17,8 @@ MenuState::MenuState(StateMachine& stateMachine, Data data) :
 	background(),
 	playButton(),
 	spaceshipsButton(),
-	highScoresButton()
+	highScoresButton(),
+	volumeButton()
 {
 	background.setTexture(data.textures.get(Textures::MenuBackground));
 
@@ -39,9 +40,17 @@ MenuState::MenuState(StateMachine& stateMachine, Data data) :
 	highScoresButton->SetPosition(sf::Vector2f(1030.f, 1200.f));
 	highScoresButton->GetSignal(sfg::Widget::OnLeftClick).Connect([this] { transitionToHighScores(); });
 
+	volumeButton = sfg::Button::Create();
+	data.soundPlayer.getVolume() == 100.f ?
+	volumeButton->SetImage(sfg::Image::Create(data.images.get(Images::OnVolumeButton)))
+	: volumeButton->SetImage(sfg::Image::Create(data.images.get(Images::OffVolumeButton)));
+	volumeButton->SetPosition(sf::Vector2f(25.f, 25.f));
+	volumeButton->GetSignal(sfg::Widget::OnLeftClick).Connect([this] { adjustVolume(); });
+
 	data.hud.Add(playButton);
 	data.hud.Add(spaceshipsButton);
 	data.hud.Add(highScoresButton);
+	data.hud.Add(volumeButton);
 }
 
 void MenuState::handleEvent(const sf::Event& event)
@@ -54,6 +63,7 @@ void MenuState::update(sf::Time deltaTime)
 	this->playButton->Show(true);
 	this->spaceshipsButton->Show(true);
 	this->highScoresButton->Show(true);
+	this->volumeButton->Show(true);
 
 	this->data.hud.Update(deltaTime.asMicroseconds());
 }
@@ -69,6 +79,7 @@ void MenuState::transitionToPlay()
 	this->playButton->Show(false);
 	this->spaceshipsButton->Show(false);
 	this->highScoresButton->Show(false);
+	this->volumeButton->Show(false);
 
 	this->stateMachine.pop();
 	this->stateMachine.push(StateMachine::StateID::PlayState);
@@ -79,6 +90,7 @@ void MenuState::transitionToSpaceshipSelection()
 	this->playButton->Show(false);
 	this->spaceshipsButton->Show(false);
 	this->highScoresButton->Show(false);
+	this->volumeButton->Show(false);
 
 	this->stateMachine.push(StateMachine::StateID::SpaceshipSelectionState);
 }
@@ -88,6 +100,21 @@ void MenuState::transitionToHighScores()
 	this->playButton->Show(false);
 	this->spaceshipsButton->Show(false);
     this->highScoresButton->Show(false);
+	this->volumeButton->Show(false);
 
 	this->stateMachine.push(StateMachine::StateID::HighScoreState);
+}
+
+void MenuState::adjustVolume()
+{
+	if (this->data.soundPlayer.getVolume() == 0.f)
+	{
+		this->data.soundPlayer.setVolume(100.f);
+		this->volumeButton->SetImage(sfg::Image::Create(data.images.get(Images::OnVolumeButton)));
+	}
+	else
+	{
+		this->data.soundPlayer.setVolume(0.f);
+		this->volumeButton->SetImage(sfg::Image::Create(data.images.get(Images::OffVolumeButton)));
+	}
 }
