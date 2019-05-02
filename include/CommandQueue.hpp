@@ -15,11 +15,11 @@ InversePalindrome.com
 class CommandQueue
 {
 public:
-	void push(const Command& command);
-	Command pop();
+    void push(const Command& command);
+    Command pop();
 
-	bool hasCommands() const;
+    bool hasCommands() const;
 
 private:
-	std::queue<Command> commands;
+    std::queue<Command> commands;
 };

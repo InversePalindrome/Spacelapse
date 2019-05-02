@@ -17,15 +17,15 @@ InversePalindrome.com
 class PlayState : public State
 {
 public:
-	PlayState(StateMachine& stateMachine, Data data);
+    PlayState(StateMachine& stateMachine, Data data);
 
-	virtual void handleEvent(const sf::Event& event) override;
-	virtual void update(sf::Time deltaTime) override;
-	virtual void draw() override;
+    virtual void handleEvent(const sf::Event& event) override;
+    virtual void update(sf::Time deltaTime) override;
+    virtual void draw() override;
 
 private:
-	Player& player;
-	World world;
+    Player& player;
+    World world;
 
-	sfg::Label::Ptr scoreLabel;
+    sfg::Label::Ptr scoreLabel;
 };

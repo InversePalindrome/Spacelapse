@@ -17,24 +17,24 @@ InversePalindrome.com
 class PointTarget : public Entity
 {
 public:
-	enum class Type { UndefinedType, BlueTarget, GreenTarget, YellowTarget };
+    enum class Type { UndefinedType, BlueTarget, GreenTarget, YellowTarget };
 
-	PointTarget(Type type, TextureManager& textures);
+    PointTarget(Type type, TextureManager& textures);
 
-	static std::size_t getPoints(Type targetType);
+    static std::size_t getPoints(Type targetType);
 
-	virtual bool isMarkedForRemoval() const override;
+    virtual bool isMarkedForRemoval() const override;
 
-	virtual std::size_t getCategory() const override;
+    virtual std::size_t getCategory() const override;
 
-	virtual sf::FloatRect getPerimeter() const override;
+    virtual sf::FloatRect getPerimeter() const override;
 
 private:
-	Type type;
-	sf::Sprite sprite;
+    Type type;
+    sf::Sprite sprite;
 
-	virtual void updateCurrentNode(sf::Time deltaTime, CommandQueue& commands) override;
-	virtual void drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const override;
+    virtual void updateCurrentNode(sf::Time deltaTime, CommandQueue& commands) override;
+    virtual void drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	Textures getTexture() const;
+    Textures getTexture() const;
 };

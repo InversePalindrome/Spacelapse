@@ -18,28 +18,28 @@ InversePalindrome.com
 class Player
 {
 public:
-	enum class Action { MoveUp, MoveDown, MoveRight, MoveLeft, Fire, ActionCount };
+    enum class Action { MoveUp, MoveDown, MoveRight, MoveLeft, Fire, ActionCount };
 
-	Player();
+    Player();
 
-	void handleEvent(const sf::Event& event, CommandQueue& commands);
-	void handleInput(CommandQueue& commands);
+    void handleEvent(const sf::Event& event, CommandQueue& commands);
+    void handleInput(CommandQueue& commands);
 
-	void setKey(Action action, sf::Keyboard::Key key);
-	sf::Keyboard::Key getKey(Action action) const;
+    void setKey(Action action, sf::Keyboard::Key key);
+    sf::Keyboard::Key getKey(Action action) const;
 
 private:
-	struct SpaceshipMovement
-	{
-		SpaceshipMovement(float xVelocity, float yVelocity);
+    struct SpaceshipMovement
+    {
+        SpaceshipMovement(float xVelocity, float yVelocity);
 
-		void operator()(Spaceship& spaceship, sf::Time) const;
+        void operator()(Spaceship& spaceship, sf::Time) const;
 
-		sf::Vector2f velocity;
-	};
+        sf::Vector2f velocity;
+    };
 
-	std::map<sf::Keyboard::Key, Action> keyActions;
-	std::map <Action, Command> actionCommands;
+    std::map<sf::Keyboard::Key, Action> keyActions;
+    std::map <Action, Command> actionCommands;
 
-	static bool isInput(Action action);
+    static bool isInput(Action action);
 };

@@ -9,21 +9,21 @@ InversePalindrome.com
 
 
 SpriteNode::SpriteNode(const sf::Texture& texture) :
-	sprite(texture)
+    sprite(texture)
 {
 }
 
 SpriteNode::SpriteNode(const sf::Texture& texture, const sf::IntRect& rectangle) :
-	sprite(texture, rectangle)
+    sprite(texture, rectangle)
 {
 }
-	
+
 void SpriteNode::setTextureRect(const sf::IntRect& rectangle)
 {
-	this->sprite.setTextureRect(rectangle);
+    this->sprite.setTextureRect(rectangle);
 }
 
 void SpriteNode::drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(this->sprite, states);
+    target.draw(this->sprite, states);
 }

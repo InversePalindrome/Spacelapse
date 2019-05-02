@@ -25,30 +25,30 @@ InversePalindrome.com
 class Application
 {
 public:
-	Application();
+    Application();
 
-	void run();
+    void run();
 
 private:
-	void processInput();
-	void update(sf::Time deltaTime);
-	void render();
+    void processInput();
+    void update(sf::Time deltaTime);
+    void render();
 
-	void saveData();
+    void saveData();
 
-	void loadData();
-	void loadTextures();
+    void loadData();
+    void loadTextures();
 
-	sf::RenderWindow window;
-	sfg::SFGUI gui;
-	sfg::Desktop hud;
+    sf::RenderWindow window;
+    sfg::SFGUI gui;
+    sfg::Desktop hud;
 
-	StateMachine stateMachine;
-	TextureManager textures;
-	ImageManager images;
-	SoundPlayer soundPlayer;
-	Player player;
-	Spaceship::Type spaceshipType;
-	
-	std::array<std::size_t, 9> scores;
+    StateMachine stateMachine;
+    TextureManager textures;
+    ImageManager images;
+    SoundPlayer soundPlayer;
+    Player player;
+    Spaceship::Type spaceshipType;
+
+    std::array<std::size_t, 9> scores;
 };

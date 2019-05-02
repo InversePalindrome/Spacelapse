@@ -9,49 +9,49 @@ InversePalindrome.com
 
 
 Entity::Entity() :
-	velocity(),
-	removalStatus(false)
+    velocity(),
+    removalStatus(false)
 {
 }
 
 void Entity::setVelocity(sf::Vector2f velocity)
 {
-	this->velocity = velocity;
+    this->velocity = velocity;
 }
 
 void Entity::setVelocity(float xVelocity, float yVelocity)
 {
-	this->velocity.x = xVelocity;
-	this->velocity.y = yVelocity;
+    this->velocity.x = xVelocity;
+    this->velocity.y = yVelocity;
 }
 
 void Entity::accelerate(sf::Vector2f velocity)
 {
-	this->velocity += velocity;
+    this->velocity += velocity;
 }
 
 void Entity::accelerate(float xVelocity, float yVelocity)
 {
-	this->velocity.x += xVelocity;
-	this->velocity.y += yVelocity;
+    this->velocity.x += xVelocity;
+    this->velocity.y += yVelocity;
 }
 
 sf::Vector2f Entity::getVelocity() const
 {
-	return this->velocity;
+    return this->velocity;
 }
 
 void Entity::setRemovalStatus(bool status)
 {
-	this->removalStatus = status;
+    this->removalStatus = status;
 }
 
 bool Entity::getRemovalStatus() const
 {
-	return this->removalStatus;
+    return this->removalStatus;
 }
 
 void Entity::updateCurrentNode(sf::Time deltaTime, CommandQueue& commands)
 {
-	this->move(this->velocity * deltaTime.asSeconds());
+    this->move(this->velocity * deltaTime.asSeconds());
 }

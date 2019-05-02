@@ -16,12 +16,12 @@ InversePalindrome.com
 class SoundNode : public SceneNode
 {
 public:
-	SoundNode(SoundPlayer& soundPlayer);
+    SoundNode(SoundPlayer& soundPlayer);
 
-	void playSound(Sounds sound, sf::Vector2f position);
+    void playSound(Sounds sound, sf::Vector2f position);
 
-	virtual std::size_t getCategory() const override;
+    virtual std::size_t getCategory() const override;
 
 private:
-	SoundPlayer& soundPlayer;
+    SoundPlayer& soundPlayer;
 };

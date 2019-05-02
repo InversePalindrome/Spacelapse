@@ -27,29 +27,29 @@ class StateMachine;
 class State
 {
 public:
-	struct Data
-	{
-		Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures,ImageManager& images,
-			SoundPlayer& soundPlayer, Player& player, Spaceship::Type& spaceshipType, std::array<std::size_t, 9>& scores);
+    struct Data
+    {
+        Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images,
+            SoundPlayer& soundPlayer, Player& player, Spaceship::Type& spaceshipType, std::array<std::size_t, 9>& scores);
 
-		sf::RenderWindow& window;
-		sfg::SFGUI& gui;
-		sfg::Desktop& hud;
-		TextureManager& textures;
-		ImageManager& images;
-		SoundPlayer& soundPlayer;
-		Player& player;
-		Spaceship::Type& spaceshipType;
-		std::array<std::size_t, 9>& scores;
-	};
+        sf::RenderWindow& window;
+        sfg::SFGUI& gui;
+        sfg::Desktop& hud;
+        TextureManager& textures;
+        ImageManager& images;
+        SoundPlayer& soundPlayer;
+        Player& player;
+        Spaceship::Type& spaceshipType;
+        std::array<std::size_t, 9>& scores;
+    };
 
-	State(StateMachine& stateMachine, Data data);
+    State(StateMachine& stateMachine, Data data);
 
-	virtual void handleEvent(const sf::Event& event) = 0;
-	virtual void update(sf::Time deltaTime) = 0;
-	virtual void draw() = 0;
+    virtual void handleEvent(const sf::Event& event) = 0;
+    virtual void update(sf::Time deltaTime) = 0;
+    virtual void draw() = 0;
 
 protected:
-	StateMachine& stateMachine;
-	Data data;
+    StateMachine& stateMachine;
+    Data data;
 };

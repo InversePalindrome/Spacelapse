@@ -17,18 +17,18 @@ InversePalindrome.com
 class PauseState : public State
 {
 public:
-	PauseState(StateMachine& stateMachine, Data data);
+    PauseState(StateMachine& stateMachine, Data data);
 
-	virtual void handleEvent(const sf::Event& event) override;
-	virtual void update(sf::Time deltaTime) override;
-	virtual void draw() override;
+    virtual void handleEvent(const sf::Event& event) override;
+    virtual void update(sf::Time deltaTime) override;
+    virtual void draw() override;
 
 private:
-	sf::Sprite background;
-	sfg::Label::Ptr scoreLabel;
-	sfg::Button::Ptr quitButton;
-	sfg::Button::Ptr playButton;
+    sf::Sprite background;
+    sfg::Label::Ptr scoreLabel;
+    sfg::Button::Ptr quitButton;
+    sfg::Button::Ptr playButton;
 
-	void transitionToMenu();
-	void transitionToPlay();
+    void transitionToMenu();
+    void transitionToPlay();
 };

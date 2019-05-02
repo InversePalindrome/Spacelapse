@@ -9,7 +9,7 @@ InversePalindrome.com
 
 
 Command::Command() :
-	action(),
-	category(Category::UndefinedCategory)
+    action(),
+    category(Category::UndefinedCategory)
 {
 }

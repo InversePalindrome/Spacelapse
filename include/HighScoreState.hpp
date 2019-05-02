@@ -21,12 +21,12 @@ class HighScoreState : public State
 public:
     HighScoreState(StateMachine& stateMachine, Data data);
 
-	virtual void handleEvent(const sf::Event& event) override;
-	virtual void update(sf::Time deltaTime) override;
-	virtual void draw() override;
+    virtual void handleEvent(const sf::Event& event) override;
+    virtual void update(sf::Time deltaTime) override;
+    virtual void draw() override;
 
 private:
-	sf::Sprite background;
-	std::array<sfg::Label::Ptr, 9> scoreLabels;
-	sfg::Button::Ptr menuButton;
+    sf::Sprite background;
+    std::array<sfg::Label::Ptr, 9> scoreLabels;
+    sfg::Button::Ptr menuButton;
 };

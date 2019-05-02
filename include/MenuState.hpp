@@ -16,22 +16,22 @@ InversePalindrome.com
 class MenuState : public State
 {
 public:
-	MenuState(StateMachine& stateMachine, Data data);
+    MenuState(StateMachine& stateMachine, Data data);
 
-	virtual void handleEvent(const sf::Event& event) override;
-	virtual void update(sf::Time deltaTime) override;
-	virtual void draw() override;
+    virtual void handleEvent(const sf::Event& event) override;
+    virtual void update(sf::Time deltaTime) override;
+    virtual void draw() override;
 
 private:
-	sf::Sprite background;
-	sfg::Button::Ptr playButton;
-	sfg::Button::Ptr spaceshipsButton;
-	sfg::Button::Ptr highScoresButton;
-	sfg::Button::Ptr volumeButton;
+    sf::Sprite background;
+    sfg::Button::Ptr playButton;
+    sfg::Button::Ptr spaceshipsButton;
+    sfg::Button::Ptr highScoresButton;
+    sfg::Button::Ptr volumeButton;
 
-	void transitionToPlay();
-	void transitionToSpaceshipSelection();
-	void transitionToHighScores();
+    void transitionToPlay();
+    void transitionToSpaceshipSelection();
+    void transitionToHighScores();
 
-	void adjustVolume();
+    void adjustVolume();
 };

@@ -10,21 +10,21 @@ InversePalindrome.com
 
 
 State::Data::Data(sf::RenderWindow& window, sfg::SFGUI& gui, sfg::Desktop& hud, TextureManager& textures, ImageManager& images,
-	SoundPlayer& soundPlayer, Player& player, Spaceship::Type& spaceshipType, std::array<std::size_t, 9>& scores) :
-	window(window),
-	gui(gui),
-	hud(hud),
-	textures(textures),
-	images(images),
-	soundPlayer(soundPlayer),
-	player(player),
-	spaceshipType(spaceshipType),
-	scores(scores)
+    SoundPlayer& soundPlayer, Player& player, Spaceship::Type& spaceshipType, std::array<std::size_t, 9>& scores) :
+    window(window),
+    gui(gui),
+    hud(hud),
+    textures(textures),
+    images(images),
+    soundPlayer(soundPlayer),
+    player(player),
+    spaceshipType(spaceshipType),
+    scores(scores)
 {
 }
 
 State::State(StateMachine& stateMachine, Data data) :
-	stateMachine(stateMachine),
-	data(data)
+    stateMachine(stateMachine),
+    data(data)
 {
 }

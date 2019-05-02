@@ -17,22 +17,22 @@ InversePalindrome.com
 class Projectile : public Entity
 {
 public:
-	enum class Type { UndefinedProjectile, FireProjectile};
+    enum class Type { UndefinedProjectile, FireProjectile };
 
-	Projectile(Type type, TextureManager& textures);
+    Projectile(Type type, TextureManager& textures);
 
-	virtual bool isMarkedForRemoval() const override;
+    virtual bool isMarkedForRemoval() const override;
 
-	virtual std::size_t getCategory() const override;
+    virtual std::size_t getCategory() const override;
 
-	virtual sf::FloatRect getPerimeter() const override;
+    virtual sf::FloatRect getPerimeter() const override;
 
 private:
-	Type type;
-	sf::Sprite sprite;
+    Type type;
+    sf::Sprite sprite;
 
-	virtual void updateCurrentNode(sf::Time deltaTime, CommandQueue& commands) override;
-	virtual void drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const override;
+    virtual void updateCurrentNode(sf::Time deltaTime, CommandQueue& commands) override;
+    virtual void drawCurrentNode(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	Textures getTexture() const;
+    Textures getTexture() const;
 };

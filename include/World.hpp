@@ -23,58 +23,58 @@ InversePalindrome.com
 class World
 {
 public:
-	World(sf::RenderWindow& window, TextureManager& textures, SoundPlayer& soundPlayer, Spaceship::Type& spaceshipType, std::size_t& score);
+    World(sf::RenderWindow& window, TextureManager& textures, SoundPlayer& soundPlayer, Spaceship::Type& spaceshipType, std::size_t& score);
 
-	void update(sf::Time deltaTime);
-	void draw();
+    void update(sf::Time deltaTime);
+    void draw();
 
-	CommandQueue& getCommands();
+    CommandQueue& getCommands();
 
-	void endGame();
+    void endGame();
 
-	bool getGameEndedStatus() const;
+    bool getGameEndedStatus() const;
 
 private:
-	enum class Layer { Background, Space, Size };
+    enum class Layer { Background, Space, Size };
 
-	sf::RenderWindow& window;
-	sf::View view;
+    sf::RenderWindow& window;
+    sf::View view;
 
-	TextureManager& textures;
-	SoundPlayer& soundPlayer;
+    TextureManager& textures;
+    SoundPlayer& soundPlayer;
 
-	SceneNode sceneGraph;
-	std::array<SceneNode*, static_cast<std::size_t>(Layer::Size)> sceneLayers;
-	CommandQueue commands;
+    SceneNode sceneGraph;
+    std::array<SceneNode*, static_cast<std::size_t>(Layer::Size)> sceneLayers;
+    CommandQueue commands;
 
-	sf::FloatRect backgroundPerimeter;
-	sf::Time spawnTime;
-	std::size_t& score;
-	float cameraSpeed;
-	static const float increasedCameraStep;
-	static const float timePerSpawn;
+    sf::FloatRect backgroundPerimeter;
+    sf::Time spawnTime;
+    std::size_t& score;
+    float cameraSpeed;
+    static const float increasedCameraStep;
+    static const float timePerSpawn;
 
-	SpriteNode* background;
-	Spaceship* player;
+    SpriteNode* background;
+    Spaceship* player;
 
-	Spaceship::Type& spaceshipType;
+    Spaceship::Type& spaceshipType;
 
-	std::vector<sf::Vector2f> entityPositions;
+    std::vector<sf::Vector2f> entityPositions;
 
-	bool gameEnded;
+    bool gameEnded;
 
-	void updateBackground();
-	void updateSounds();
-	void updatePlayerVelocity();
-	void updatePlayerPosition();
+    void updateBackground();
+    void updateSounds();
+    void updatePlayerVelocity();
+    void updatePlayerPosition();
 
-	void handleCollisions();
+    void handleCollisions();
 
-	void spawnEntities();
-	void deleteMarkedEntities();
+    void spawnEntities();
+    void deleteMarkedEntities();
 
-	sf::FloatRect getExternalWorldPerimeter() const;
-	void calculateEntityPositions(std::size_t numOfAsteroids);
+    sf::FloatRect getExternalWorldPerimeter() const;
+    void calculateEntityPositions(std::size_t numOfAsteroids);
 
-	bool categoriesMatch(std::pair<SceneNode*, SceneNode*>& collisions, Command::Category type1, Command::Category type2);
+    bool categoriesMatch(std::pair<SceneNode*, SceneNode*>& collisions, Command::Category type1, Command::Category type2);
 };

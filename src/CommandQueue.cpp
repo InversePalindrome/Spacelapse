@@ -10,19 +10,19 @@ InversePalindrome.com
 
 void CommandQueue::push(const Command& command)
 {
-	this->commands.push(command);
+    this->commands.push(command);
 }
 
 Command CommandQueue::pop()
 {
-	auto command = this->commands.front();
+    auto command = this->commands.front();
 
-	this->commands.pop();
+    this->commands.pop();
 
-	return command;
+    return command;
 }
 
 bool CommandQueue::hasCommands() const
 {
-	return !this->commands.empty();
+    return !this->commands.empty();
 }

@@ -20,46 +20,46 @@ InversePalindrome.com
 class StateMachine
 {
 public:
-	enum class StateID { UndefinedState, SplashState, MenuState, PlayState, SpaceshipSelectionState, HighScoreState, PauseState, GameOverState };
-	enum class Action { UndefinedAction, Push, Pop, Clear };
+    enum class StateID { UndefinedState, SplashState, MenuState, PlayState, SpaceshipSelectionState, HighScoreState, PauseState, GameOverState };
+    enum class Action { UndefinedAction, Push, Pop, Clear };
 
-	StateMachine(State::Data data);
+    StateMachine(State::Data data);
 
-	void handleEvent(const sf::Event& event);
-	void update(sf::Time deltaTime);
-	void draw();
+    void handleEvent(const sf::Event& event);
+    void update(sf::Time deltaTime);
+    void draw();
 
-	template<typename T>
-	void registerState(StateID stateID);
+    template<typename T>
+    void registerState(StateID stateID);
 
-	void push(StateID stateID);
-	void pop();
-	void clear();
+    void push(StateID stateID);
+    void pop();
+    void clear();
 
-	bool hasStates() const;
+    bool hasStates() const;
 
 private:
-	struct PendingAction
-	{
-		PendingAction(Action action, StateID stateID);
+    struct PendingAction
+    {
+        PendingAction(Action action, StateID stateID);
 
-		Action action;
-		StateID stateID;
-	};
+        Action action;
+        StateID stateID;
+    };
 
-	State::Data data;
+    State::Data data;
 
-	std::vector<std::unique_ptr<State>> states;
-	std::vector<PendingAction> pendingActions;
-	std::map<StateID, std::function<std::unique_ptr<State>()>> stateHolder;
+    std::vector<std::unique_ptr<State>> states;
+    std::vector<PendingAction> pendingActions;
+    std::map<StateID, std::function<std::unique_ptr<State>()>> stateHolder;
 
-	std::unique_ptr<State> selectState(StateID stateID);
-	void applyPendingActions();
+    std::unique_ptr<State> selectState(StateID stateID);
+    void applyPendingActions();
 };
 
 
 template<typename T>
 void StateMachine::registerState(StateID stateID)
 {
-	this->stateHolder[stateID] = [&]() { return std::make_unique<T>(*this, data); };
+    this->stateHolder[stateID] = [&]() { return std::make_unique<T>(*this, data); };
 }

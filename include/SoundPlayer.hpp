@@ -19,29 +19,29 @@ InversePalindrome.com
 class SoundPlayer
 {
 public:
-	SoundPlayer();
+    SoundPlayer();
 
-	void play(Sounds sound);
-	void play(Sounds sound, sf::Vector2f position);
+    void play(Sounds sound);
+    void play(Sounds sound, sf::Vector2f position);
 
-	void removeStoppedSounds();
+    void removeStoppedSounds();
 
-	void setVolume(float volume);
+    void setVolume(float volume);
 
-	void setListenerPosition(sf::Vector2f position);
+    void setListenerPosition(sf::Vector2f position);
 
-	float getVolume() const;
+    float getVolume() const;
 
-	sf::Vector2f getListenerPosition() const;
+    sf::Vector2f getListenerPosition() const;
 
 private:
-	SoundManager soundBuffers;
-	std::list<sf::Sound> sounds;
+    SoundManager soundBuffers;
+    std::list<sf::Sound> sounds;
 
-	float volume;
+    float volume;
 
-	static const float zPosition;
-	static const float attenuation;
-	static const float minDistance2d;
-	static const float minDistance3d;
+    static const float zPosition;
+    static const float attenuation;
+    static const float minDistance2d;
+    static const float minDistance3d;
 };

@@ -19,24 +19,24 @@ InversePalindrome.com
 class SpaceshipSelectionState : public State
 {
 public:
-	SpaceshipSelectionState(StateMachine& stateMachine, Data data);
+    SpaceshipSelectionState(StateMachine& stateMachine, Data data);
 
-	virtual void handleEvent(const sf::Event& event) override;
-	virtual void update(sf::Time deltaTime) override;
-	virtual void draw() override;
+    virtual void handleEvent(const sf::Event& event) override;
+    virtual void update(sf::Time deltaTime) override;
+    virtual void draw() override;
 
 private:
-	struct Selection
-	{
-		Selection(Data data, Textures spaceshipTexture, sf::Vector2f position);
+    struct Selection
+    {
+        Selection(Data data, Textures spaceshipTexture, sf::Vector2f position);
 
-		sf::Sprite spaceshipSprite;
-		sfg::Button::Ptr spaceshipButton;
-	};
+        sf::Sprite spaceshipSprite;
+        sfg::Button::Ptr spaceshipButton;
+    };
 
-	sf::Sprite background;
-	sfg::Button::Ptr menuButton;
-	std::map<Spaceship::Type, Selection> spaceshipSelections;
+    sf::Sprite background;
+    sfg::Button::Ptr menuButton;
+    std::map<Spaceship::Type, Selection> spaceshipSelections;
 
-	void selectSpaceship(Spaceship::Type spaceshipType);
+    void selectSpaceship(Spaceship::Type spaceshipType);
 };

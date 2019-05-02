@@ -16,27 +16,27 @@ class SceneNode;
 
 struct Command
 {
-	enum Category 
-	{
-		UndefinedCategory = 0, Scene = 1 << 0, Sound = 1 << 1, Player = 1 << 2, Asteroid = 1 << 3, Projectile = 1 << 4, 
-		BluePointTarget = 1 << 5, GreenPointTarget = 1 << 6, YellowPointTarget = 1 << 7,
+    enum Category
+    {
+        UndefinedCategory = 0, Scene = 1 << 0, Sound = 1 << 1, Player = 1 << 2, Asteroid = 1 << 3, Projectile = 1 << 4,
+        BluePointTarget = 1 << 5, GreenPointTarget = 1 << 6, YellowPointTarget = 1 << 7,
 
-		PointTarget = BluePointTarget | GreenPointTarget | YellowPointTarget
-	};
+        PointTarget = BluePointTarget | GreenPointTarget | YellowPointTarget
+    };
 
-	Command();
+    Command();
 
-	std::function<void(SceneNode&, sf::Time)> action;
+    std::function<void(SceneNode&, sf::Time)> action;
 
-	std::size_t category;
+    std::size_t category;
 };
 
 
 template<typename Object, typename Function>
 std::function<void(SceneNode&, sf::Time)> derivedAction(Function function)
 {
-	return [=] (SceneNode& node, sf::Time deltaTime)
-	{
-		function(static_cast<Object&>(node), deltaTime);
-	};
+    return [=](SceneNode & node, sf::Time deltaTime)
+    {
+        function(static_cast<Object&>(node), deltaTime);
+    };
 }
